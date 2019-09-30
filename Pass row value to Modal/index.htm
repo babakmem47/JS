@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--Bootstrap 3 header: -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <script src="/jquery-1.10.2.js"></script>
+    <script src="/bootstrap.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">ویرایش</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="/Individuals/Save" class="form-inline" method="post">
+                        <div class="row">
+                            <div class="form-group form-inline width22pc">
+                                <label for="Name">نام</label>
+                                <input id="nameInput" class="form-control newline" data-val="true"
+                                    data-val-maxlength="حداکثر 70 کاراکتر" data-val-maxlength-max="70"
+                                    data-val-required="پر کردن فیلد نام ضروری است" id="Name" name="Name" type="text"
+                                    value="" />
+                                <span class="field-validation-valid" data-valmsg-for="Name"
+                                    data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="form-group form-inline width15pc">
+                                <label for="SematId">سِمَت</label>
+                                <select class="form-control" data-val="true"
+                                    data-val-number="The field سِمَت must be a number." id="SematId" name="SematId">
+                                    <option value=""></option>
+                                    <option value="1">کارشناس</option>
+                                    <option value="2">کاربر رایانه</option>
+                                    <option value="3">معاون دایره</option>
+                                    <option value="4">رئیس دایره</option>
+                                    <option value="5">متصدی امور بانکی</option>
+                                    <option value="6">اپراتور</option>
+                                    <option value="7">پیش خدمت</option>
+                                    <option value="8">معاون اداره</option>
+                                    <option value="9">رئیس اداره</option>
+                                    <option value="10">کارمند</option>
+                                    <option value="11">رابط</option>
+                                    <option value="12">غیره</option>
+                                    <option value="13">رئیس خدمات ماشینی</option>
+                                    <option value="14">مسئول خدمات ماشینی</option>
+                                    <option value="15">معاون خدمات ماشینی</option>
+                                    <option value="16">خدمات ماشینی</option>
+                                </select>
+                                <span class="field-validation-valid" data-valmsg-for="SematId"
+                                    data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="form-group form-inline width5pc">
+                                <label for="Gender">جنسیت</label>
+                                <select class="form-control" id="Gender" name="Gender">
+                                    <option value=""></option>
+                                    <option value="true">زن</option>
+                                    <option value="false">مرد</option>
+                                </select>
+                                <span class="field-validation-valid" data-valmsg-for="Gender"
+                                    data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="form-group form-inline width10pc">
+                                <label for="TelDirect">تلفن مستقیم</label>
+                                <input class="form-control" data-val="true" data-val-maxlength="حداکثر 50 کاراکتر"
+                                    data-val-maxlength-max="50" id="TelDirect" name="TelDirect" type="text" value="" />
+                                <span class="field-validation-valid" data-valmsg-for="TelDirect"
+                                    data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="form-group form-inline width5pc">
+                                <label for="TelDakheli"> داخلی</label>
+                                <input class="form-control" data-val="true" data-val-maxlength="حداکثر 40 کاراکتر"
+                                    data-val-maxlength-max="40" id="TelDakheli" name="TelDakheli" type="text"
+                                    value="" />
+                                <span class="field-validation-valid" data-valmsg-for="TelDakheli"
+                                    data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="form-group form-inline width12pc">
+                                <label for="Mobile">موبایل</label>
+                                <input class="form-control" data-val="true" data-val-maxlength="حداکثر 50 کاراکتر"
+                                    data-val-maxlength-max="50" id="Mobile" name="Mobile" type="text" value="" />
+                                <span class="field-validation-valid" data-valmsg-for="Mobile"
+                                    data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="form-group form-inline width28pc">
+                                <label for="Description">توضیحات</label>
+                                <input class="form-control" data-val="true" data-val-maxlength="حداکثر 250 کاراکتر"
+                                    data-val-maxlength-max="250" id="Description" name="Description" type="text"
+                                    value="" />
+                                <span class="field-validation-valid" data-valmsg-for="Description"
+                                    data-valmsg-replace="true"></span>
+                            </div>
+
+                        </div>
+
+                        <br />
+                        <input data-val="true" data-val-number="The field Id must be a number."
+                            data-val-required="The Id field is required." id="Id" name="Id" type="hidden" value="4" />
+
+                        <button id="savebutton" type="submit" class="btn btn-primary">ذخیره</button>
+                    </form>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div> -->
+            </div>
+
+        </div>
+    </div>
+    <!-- End of Modal -->
+
+
+    <table id="individualTable"
+        class="table table-bordered table-hover table-striped table-condensed table-responsive dataTable no-footer"
+        role="grid" aria-describedby="individualTable_info" style="width: 800px; direction: rtl">
+        <thead>
+            <tr role="row">
+                <td class="width30px" rowspan="1" colspan="1" aria-label="ردیف" style="width: 30px;">ردیف</td>
+                <td class="text-center sorting" tabindex="0" aria-controls="individualTable" rowspan="1" colspan="1"
+                    aria-label="نام: activate to sort column ascending" style="width: 128px;">نام</td>
+                <td class="text-center sorting" tabindex="0" aria-controls="individualTable" rowspan="1" colspan="1"
+                    aria-label="سمت: activate to sort column ascending" style="width: 76px;">سمت</td>
+                <td class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 29px;"><i
+                        class="fa fa-intersex" style="font-size:16px"></i></td>
+                <td class="width65px sorting" tabindex="0" aria-controls="individualTable" rowspan="1" colspan="1"
+                    aria-label=" مستقیم &amp;nbsp; : activate to sort column ascending" style="width: 65px;"> مستقیم
+                    &nbsp; <span class="glyphicon glyphicon-phone-alt"></span></td>
+                <td class="width65px sorting" tabindex="0" aria-controls="individualTable" rowspan="1" colspan="1"
+                    aria-label=" داخلی &amp;nbsp;: activate to sort column ascending" style="width: 65px;"> داخلی
+                    &nbsp;<span class="glyphicon glyphicon-earphone"></span></td>
+                <td class="ltrcell width100px sorting_disabled" rowspan="1" colspan="1" aria-label=" موبایل &amp;nbsp;"
+                    style="width: 100px;"> موبایل &nbsp;<span class="glyphicon glyphicon-phone"></span></td>
+                <td class="text-center sorting" tabindex="0" aria-controls="individualTable" rowspan="1" colspan="1"
+                    aria-label="توضیحات: activate to sort column ascending" style="width: 172px;">توضیحات</td>
+                <td class="fontsize9">ویرایش | حذف</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr role="row" class="odd">
+                <td class="width30px sorting_1">۱</td>
+                <td class=" text-center">خداداد</td>
+                <td class=" text-center">رابط</td>
+                <td class=" text-center"><i class="fa fa-male" style="font-size:14px;"></i></td>
+                <td class=" width65px">۸۳۸۶۹۸۹۴</td>
+                <td class=" width65px">۹۸۹۴</td>
+                <td class=" ltrcell width100px">۰۹۳۶ ۲۱۹ ۱۵۶۱</td>
+                <td class="text-center">شرکت مبین نت</td>
+                <td><a href='' class= 'link-open-edit-modal' data-individual-id='2' 
+                     data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-edit'
+                            title='... ویرایش'></span></a></td>
+            </tr>
+
+            <tr role="row" class="odd">
+                <td class="width30px sorting_1">۳</td>
+                <td class="text-center">مرادی سایت</td>
+                <td class=" text-center"></td>
+                <td class=" text-center"><i class="fa fa-male" style="font-size:14px;"></i></td>
+                <td class=" width65px">۶۶۷۴۴۴۷۹</td>
+                <td class=" width65px">۲۵۹۲</td>
+                <td class=" ltrcell width100px">+۹۸ ۹۱۱ ۳۴۶ ۰۸۶۶</td>
+                <td class=" text-center">شرکت افراویژن سایت</td>
+                <td><a href='' data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-edit'
+                            title='... ویرایش'></span></a></td>
+            </tr>
+            <tr role="row" class="even">
+                <td class="width30px sorting_1">۴</td>
+                <td class="nameTD text-center">مجتبی حدادی</td>
+                <td class=" text-center">رئیس دایره</td>
+                <td class=" text-center"><i class="fa fa-male" style="font-size:14px;"></i></td>
+                <td class=" width65px"></td>
+                <td class=" width65px">۲۳۵۰</td>
+                <td class=" ltrcell width100px"></td>
+                <td class=" text-center">حقوق و مزایا</td>
+                <td><a class="LinkOpenEdidModal" href='' data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-edit'
+                            title='... ویرایش'></span></a></td>
+            </tr>
+    </table>
+
+    <script>
+        $(document).ready(function(){
+            $(".LinkOpenEdidModal").click(function(){
+                var button = $(this);
+                console.log(button.parents("tr").find(".nameTD").html());
+                $("#nameInput").val(button.parents("tr").find(".nameTD").html());
+            });            
+            /*    // 404 not work!
+            var individualTable = $("#individualTable"); 
+            console.log(individualTable);
+            individualTable.on("click",
+                ".link-open-edit-modal",
+                function() {
+                    var editButton = $(this);
+                    console.log(editButton.attr("data-individual-id"));
+                    $.ajax({
+                        url: "http://localhost:60943/api/individuals/" + editButton.attr("data-individual-id"),
+                        method: "GET",
+                    }).done(function(data, status) {
+                        console.log(data, status);
+
+                    }).fail(function() {
+                        alert("fail to real data");
+                    });
+
+                });
+            */
+        }); 
+
+    </script>
+</body>
+
+</html>

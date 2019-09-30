@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/js/jquery-3.3.1.js"></script>
+</head>
+<body>
+    Integer (both positive and negative):
+    <input id="intTextBox">
+    <br />
+    <br />
+    Integer (positive only):	
+    <input id="uintTextBox">
+    <br />
+    <br />
+    Integer (positive and <= 500):	
+    <input id="intLimitTextBox">
+    <br />
+    <br />
+    Floating point (use . or , as decimal separator):	
+    <input id="floatTextBox">
+    <br />
+    <br />
+    Currency (at most two decimal places):	
+    <input id="currencyTextBox">
+    <br />
+    <br />
+    Hexadecimal:
+    <input id="hexTextBox">
+    
+
+
+
+    <script>
+        $(document).ready(function(){
+            (function($) {
+                $.fn.inputFilter = function(inputFilter) {
+                  return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+                    if (inputFilter(this.value)) {
+                      this.oldValue = this.value;
+                      this.oldSelectionStart = this.selectionStart;
+                      this.oldSelectionEnd = this.selectionEnd;
+                    } else if (this.hasOwnProperty("oldValue")) {
+                      this.value = this.oldValue;
+                      this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                    }
+                  });
+                };
+              }(jQuery));
+
+            $("#intTextBox").inputFilter(function(value) {
+                return /^-?\d*$/.test(value); });
+            
+            $("#uintTextBox").inputFilter(function(value) {
+                return /^\d*$/.test(value); });
+                        
+            $("#intLimitTextBox").inputFilter(function(value) {
+                return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 500); });
+
+            $("#floatTextBox").inputFilter(function(value) {
+                return /^-?\d*[.,]?\d*$/.test(value); });
+
+            $("#currencyTextBox").inputFilter(function(value) {
+                return /^-?\d*[.,]?\d{0,2}$/.test(value); });
+
+            $("#hexTextBox").inputFilter(function(value) {
+                return /^[0-9a-f]*$/i.test(value); });
+                
+        });
+    </script>
+</body>
+</html>
+
+
+
+<!--
+
+    !
+    To use jQuery, we have to address jquery-3.3.1.js file in <head>:
+        1. Copy  jquery-3.3.1.js into js folder(or whatever name) in the project
+        <head>
+            .
+            .
+            <script src="/js/jquery-3.3.1.js"></script>
+        </head>
+        
+        2. Insert script tag before the ending of body tag and write jQuery code inside it
+            <script>
+                $(document).ready(function(){
+                    console.log('salam');
+                });
+            </script>
+
+    
+    
+
+
+
+--> 
+    
+

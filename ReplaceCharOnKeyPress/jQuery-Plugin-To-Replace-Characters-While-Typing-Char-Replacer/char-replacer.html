@@ -1,0 +1,112 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery Char Replacer Plugin Demos</title>
+    <style type="text/css">
+      .container { max-width:728px; margin-top:150px;}
+
+    </style>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="jquery.charReplacer.js"></script>
+    <script>
+        $(function () {
+            $("#Text1").charReplacer(); //  replaces spaces with - 
+            $("#Text2").charReplacer({ replaceWith: '$' });   //  replaces spaces with $       
+            $("#Text3").charReplacer({ replaceChar: '&', replaceWith: 'and' }); //  replaces & with and; 
+            $("#Text4").charReplacer({ replaceChar: '\'', replaceWith: '\"' }); //  replaces ' with "; 
+            $("#Text5").charReplacer({ replaceChar: ["<", ">", '\n'], replaceWith: ["&lt;", "&gt;", " &lt;br&gt; "] });   //  replaces array with array   
+            $("input[char-replace='true']").charReplacer();
+        });
+    </script>
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="jquery-script-menu">
+<div class="jquery-script-center">
+<ul>
+<li><a href="http://www.jqueryscript.net/text/jQuery-Plugin-To-Replace-Characters-While-Typing-Char-Replacer.html">Download This Plugin</a></li>
+<li><a href="http://www.jqueryscript.net/">Back To jQueryScript.Net</a></li>
+</ul>
+<div class="jquery-script-ads"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-2783044520727903";
+/* jQuery_demo */
+google_ad_slot = "2780937993";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div class="jquery-script-clear"></div>
+</div>
+</div>
+<div class="container">
+    <h1>jQuery Char Replacer Plugin Demos</h1>
+    <input class="form-control" type="text" id="Text1" placeholder="replace space with -"/>
+    <div class="well">
+        //Default Behaviour
+        $(function () {
+            $("#Text1").charReplacer();
+        })
+        </div>
+<input class="form-control" type="text" id="Text2" placeholder="replace space with $"/>
+    <div class="well">
+        $(function () {
+            $("#Text2").charReplacer({ replaceWith: '$' });
+        })
+</div>
+<input class="form-control" type="text" id="Text3" placeholder="replace & with and"/>
+    <div class="well">
+        $(function () {
+           $("#Text3").charReplacer({ replaceChar: '&', replaceWith: 'and' });
+        })
+</div>
+<input class="form-control" type="text" id="Text4" placeholder="replace ' with '' "/>
+    <div class="well">
+        $(function () {
+           $("#Text4").charReplacer({ replaceChar: '\'', replaceWith: '\"' });
+        })
+</div>
+    <textarea style="width: 620px; height: 144px;" id="Text5" placeholder="['<', '>','\n'] -> ['&amp;lt;', '&amp;gt;', '<br/>']"></textarea>
+    <div class="well">
+        $(function () {
+            $("#Text5").charReplacer({ replaceChar: ["<", ">", "\n"], replaceWith: ["&amp;lt;", "&amp;gt;", "&lt;br&gt;"] });
+        })
+</div>
+<input class="form-control" type="text" placeholder="replace space with -" char-replace="true"/> <input class="form-control" type="text" placeholder="replace space with -" char-replace="true"/> <input class="form-control" type="text" placeholder="replace space with -" char-replace="true"/> <input placeholder="replace space with -" type="text" char-replace="true"/>
+    <div class="well">
+        // mutiple fields
+        //html
+        &lt;input type=&#39;text&#39; char-replace=&#39;true&#39; /&gt;
+        &lt;input type=&#39;text&#39; char-replace=&#39;true&#39; /&gt;    
+        &lt;input type=&#39;text&#39; char-replace=&#39;true&#39; /&gt;
+        &lt;input type=&#39;text&#39; char-replace=&#39;true&#39; /&gt;
+        // javascript
+        $(function () {
+           $("input[char-replace='true']").charReplacer();
+           //or
+           //$("input[char-replace='true']").charReplacer({ replaceChar:&quot; &quot;, replaceWith:&quot;-&quot; });
+        })
+        </div>
+
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

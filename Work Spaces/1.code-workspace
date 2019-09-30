@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "ConfigAnalyserWorkSpace"
+		},
+		{
+			"path": "D:\\GitHub\\ConfigAnalyzer\\vscode-git",
+			"name": "vscode-git"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "vscode-git"
+	}
+}
