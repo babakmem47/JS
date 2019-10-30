@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <script src="/jquery-1.10.2.js"></script>
+    <script src="/bootstrap.js"></script>
+    <script src="/moment.min.js"></script>
+    <script src="/moment-jalaali.js"></script>
+    <script src="/persianumber.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <p class="pp">
+        Date Time Test 1362364
+    </p>
+    <div class="row">
+        <div class="col-lg-1 col-xs-1"></div>
+        <div class="col-lg-10  col-xs-10">
+            <div class="form-group">
+                <input id="inputTest" type="text" class="form-control" width="200px;">
+            </div>
+            <div class="form-group">
+                <input id="inputTest2" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <input id="inputTest3" type="text" class="form-control">
+            </div>
+        </div>
+        <div class="col-lg-1  col-xs-1"></div>
+    </div>
+    <div id="displaypersian">
+
+    </div>
+    <div id="relativedate">
+
+    </div>
+</body>
+<script>
+    $(document).ready(function () {
+        //var d = new Date();
+        date = "2019-08-20T17:42:00";
+        date2 = "2019-10-30T14:00:00";
+        date3 = "2019-10-30T18:00:00";
+        //console.log(date);
+        $("#inputTest").val(moment(date));
+        $("#inputTest2").val(moment(date2).format('jYYYY/jM/jD'));
+        $("#inputTest3").val(moment(date3).format('jYYYY/jM/jD'));
+        var temp = $("#inputTest3").val();
+        console.log(temp);
+        var mydiv = document.getElementById("displaypersian");
+        mydiv.innerHTML = temp;
+        $("#displaypersian").persiaNumber();
+        $("#inputTest3").val(mydiv.innerHTML);
+        //temp = temp.persiaNumber();
+        //var digit = $("#inputTest3").val()
+        //digit = digit.persiaNumber();
+        //console.log(digit);
+        $(".pp").persiaNumber();
+
+        document.getElementById("relativedate").innerHTML = moment("20111031", "YYYYMMDD").fromNow();
+    });
+</script>
+
+</html>

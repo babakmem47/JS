@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <script src="/jquery-1.10.2.js"></script>
+    <script src="/bootstrap.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>JavaScript input filter showcase</h2>
+    <p>This will correctly handle Copy+Paste, Drag+Drop, all keyboard shortcuts, all context menu operations, all
+        non-typeable keys (e.g. cursor and navigation keys), the caret position, all keyboard layouts (i.e. all
+        languages and platforms) and <a href="https://caniuse.com/#search=oninput" target="_blank">all browsers since IE
+            9</a>.</p>
+    <p>There is also a <a href="https://jsfiddle.net/emkey08/tvx5e7q3" target="_blank">jQuery version</a> of this.</p>
+    <table>
+        <tr>
+            <td>Integer (positive only):</td>
+            <td><input id="uintTextBox"></td>
+        </tr>
+        <tr>
+            <td>Integer (positive and &lt;= 500):</td>
+            <td><input id="intLimitTextBox"></td>
+        </tr>
+        <tr>
+            <td>Integer (both positive and negative):</td>
+            <td><input id="intTextBox"></td>
+        </tr>
+        <tr>
+            <td>Floating point (use . or , as decimal separator):</td>
+            <td><input id="floatTextBox"></td>
+        </tr>
+        <tr>
+            <td>Currency (at most two decimal places):</td>
+            <td><input id="currencyTextBox"></td>
+        </tr>
+        <tr>
+            <td>A-Z only:</td>
+            <td><input id="basicLatinTextBox"></td>
+        </tr>
+        <tr>
+            <td>Latin letters only (most European languages):</td>
+            <td><input id="extendedLatinTextBox"></td>
+        </tr>
+        <tr>
+            <td>Hexadecimal:</td>
+            <td><input id="hexTextBox"></td>
+        </tr>
+
+        <tr>
+            <td>Maximum 4 Digit(Internal Tel Number "Dakheli")</td>
+            <td><input id="TelDakheli"></td>
+        </tr>
+
+        <tr>
+            <td>Mobile Number 10 digit with space separator</td>
+            <td><input type="text" id="Mobile" placeholder="0912 555 5555"></td>
+        </tr>
+        
+        <tr>
+            <td>Test </td>
+            <td><input type="text" id="Test"></td>
+        </tr>
+
+    </table>
+
+    <script>
+        // Restricts input for the given textbox to the given inputFilter.
+        function setInputFilter(textbox, inputFilter) {
+            ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function (event) {
+                textbox.addEventListener(event, function () {
+                    if (inputFilter(this.value)) {
+                        this.oldValue = this.value;
+                        this.oldSelectionStart = this.selectionStart;
+                        this.oldSelectionEnd = this.selectionEnd;
+                    } else if (this.hasOwnProperty("oldValue")) {
+                        this.value = this.oldValue;
+                        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                    }
+                });
+            });
+        }
+
+
+        // Install input filters.
+        setInputFilter(document.getElementById("uintTextBox"), function (value) {
+            return /^\d*$/.test(value);
+        });
+        setInputFilter(document.getElementById("intLimitTextBox"), function (value) {
+            return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 500);
+        });
+        setInputFilter(document.getElementById("intTextBox"), function (value) {
+            return /^-?\d*$/.test(value);
+        });
+        setInputFilter(document.getElementById("floatTextBox"), function (value) {
+            return /^-?\d*[.,]?\d*$/.test(value);
+        });
+        setInputFilter(document.getElementById("currencyTextBox"), function (value) {
+            return /^-?\d*[.,]?\d{0,2}$/.test(value);
+        });
+        setInputFilter(document.getElementById("basicLatinTextBox"), function (value) {
+            return /^[a-z]*$/i.test(value);
+        });
+        setInputFilter(document.getElementById("extendedLatinTextBox"), function (value) {
+            return /^[a-z\u00c0-\u024f]*$/i.test(value);
+        });
+        setInputFilter(document.getElementById("hexTextBox"), function (value) {
+            return /^[0-9a-f]*$/i.test(value);
+        });
+
+        setInputFilter(document.getElementById("TelDakheli"), function (value) {
+            return /^\d*$/.test(value) && (value === "" || value.length <= 4);
+        });
+
+        /*
+        document.getElementById('phone').addEventListener('input', function (e) {
+            var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+        });
+        */
+
+        document.getElementById('Mobile').addEventListener('input', function (e) {
+            var x = e.target.value.replace(/\D/g, '').match(/(\d{0,4})(\d{0,3})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : x[1] + ' ' + x[2] + (x[3] ? ' ' + x[3] : '');
+        });
+
+        // \D : non-digit character
+        document.getElementById("Test").addEventListener("input", function(e) {
+            var onlyDigits = e.target.value.replace(/\D/g, '');
+            e.target.value = onlyDigits;
+        }); 
+    </script>
+</body>
+
+</html>

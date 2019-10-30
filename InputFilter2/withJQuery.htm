@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <script src="/jquery-1.10.2.js"></script>
+    <script src="/bootstrap.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>jQuery input filter showcase</h2>
+    <p>This will correctly handle Copy+Paste, Drag+Drop, all keyboard shortcuts, all context menu operations, all
+        non-typeable keys (e.g. cursor and navigation keys), the caret position, all keyboard layouts (i.e. all
+        languages and platforms) and <a href="https://caniuse.com/#search=oninput" target="_blank">all browsers since IE
+            9</a>.</p>
+    <p>There is also a <a href="https://jsfiddle.net/emkey08/zgvtjc51" target="_blank">pure JavaScript version</a> of
+        this (without jQuery).</p>
+    <table>
+        <tr>
+            <td>Integer (positive only):</td>
+            <td><input id="uintTextBox"></td>
+        </tr>
+        <tr>
+            <td>Integer (positive and &lt;= 500):</td>
+            <td><input id="intLimitTextBox"></td>
+        </tr>
+        <tr>
+            <td>Integer (both positive and negative):</td>
+            <td><input id="intTextBox"></td>
+        </tr>
+        <tr>
+            <td>Floating point (use . or , as decimal separator):</td>
+            <td><input id="floatTextBox"></td>
+        </tr>
+        <tr>
+            <td>Currency (at most two decimal places):</td>
+            <td><input id="currencyTextBox"></td>
+        </tr>
+        <tr>
+            <td>A-Z only:</td>
+            <td><input id="basicLatinTextBox"></td>
+        </tr>
+        <tr>
+            <td>Latin letters only (most European languages):</td>
+            <td><input id="extendedLatinTextBox"></td>
+        </tr>
+        <tr>
+            <td>Hexadecimal:</td>
+            <td><input id="hexTextBox"></td>
+        </tr>
+    </table>
+
+    <script>
+        // Restricts input for each element in the set of matched elements to the given inputFilter.
+        (function ($) {
+            $.fn.inputFilter = function (inputFilter) {
+                return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function () {
+                    if (inputFilter(this.value)) {
+                        this.oldValue = this.value;
+                        this.oldSelectionStart = this.selectionStart;
+                        this.oldSelectionEnd = this.selectionEnd;
+                    } else if (this.hasOwnProperty("oldValue")) {
+                        this.value = this.oldValue;
+                        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                    }
+                });
+            };
+        }(jQuery));
+
+
+        // Install input filters.
+        $("#uintTextBox").inputFilter(function (value) {
+            return /^\d*$/.test(value);
+        });
+        $("#intLimitTextBox").inputFilter(function (value) {
+            return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 500);
+        });
+        $("#intTextBox").inputFilter(function (value) {
+            return /^-?\d*$/.test(value);
+        });
+        $("#floatTextBox").inputFilter(function (value) {
+            return /^-?\d*[.,]?\d*$/.test(value);
+        });
+        $("#currencyTextBox").inputFilter(function (value) {
+            return /^-?\d*[.,]?\d{0,2}$/.test(value);
+        });
+        $("#basicLatinTextBox").inputFilter(function (value) {
+            return /^[a-z]*$/i.test(value);
+        });
+        $("#extendedLatinTextBox").inputFilter(function (value) {
+            return /^[a-z\u00c0-\u024f]*$/i.test(value);
+        });
+        $("#hexTextBox").inputFilter(function (value) {
+            return /^[0-9a-f]*$/i.test(value);
+        });
+    </script>
+</body>
+
+</html>
