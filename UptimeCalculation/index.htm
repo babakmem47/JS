@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <script src="/jquery-1.10.2.js"></script>
+    <script src="/bootstrap.js"></script>
+    <script src="/moment.min.js"></script>
+    <script src="/moment-jalaali.js"></script>
+    <script src="/persianumber.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="date">  
+    </div>
+
+
+
+</body>
+<script>
+
+    
+    function ConvertUptimeToDate(uptime_string) {
+        var now = moment();                         // Sun Nov 03 2019 15:38:09 GMT+0330
+        var sqlFormatDate = "2019-10-30T14:00:00";
+        var year = 
+        var dateOfUp = moment(sqlFormatDate).subtract(0, 'days');
+        return dateOfUp;
+    }
+
+    $(document).ready(function () {
+        var uptime_date = ConvertUptimeToDate("2 years, 43 weeks, 18 hours, 34 minutes");
+        document.getElementById("date").innerHTML = uptime_date;
+    });
+</script>
+
+</html>
