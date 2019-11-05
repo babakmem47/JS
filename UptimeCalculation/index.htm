@@ -7,34 +7,68 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/bootstrap.css">
     <script src="/jquery-1.10.2.js"></script>
-    <script src="/bootstrap.js"></script>
+    <script src="/bootstrap.js"></script>    
     <script src="/moment.min.js"></script>
     <script src="/moment-jalaali.js"></script>
     <script src="/persianumber.js"></script>
     <title>Document</title>
 </head>
 
+<style>
+    .btn {
+        background-color: blueviolet;
+    }
+</style>
+
 <body>
     <div id="date">  
     </div>
+    <div id="subtracted">  
+    </div>
+    <p></p>
+    <div id="date">  
+    </div>   
 
-
-
+    <button  class="btn btn-primary">AAA BBB</button>
+    
 </body>
 <script>
 
-    
+
     function ConvertUptimeToDate(uptime_string) {
-        var now = moment();                         // Sun Nov 03 2019 15:38:09 GMT+0330
-        var sqlFormatDate = "2019-10-30T14:00:00";
-        var year = 
-        var dateOfUp = moment(sqlFormatDate).subtract(0, 'days');
+        var splitString = uptime_string.split(",");
+        var i = 0;
+        var dateOfUp = moment();
+        while (i < splitString.length) {
+            var thisChunk = splitString[i];
+            var timeElement = thisChunk.split(" ");
+            if(timeElement[timeElement.length - 1].includes("year"))
+                dateOfUp = moment(dateOfUp).subtract(timeElement[timeElement.length - 2], 'years');
+            else if (timeElement[timeElement.length - 1].includes("week")) 
+                dateOfUp = moment(dateOfUp).subtract(timeElement[timeElement.length - 2] * 7, 'days');
+            else if (timeElement[timeElement.length - 1].includes("day")) 
+                dateOfUp = moment(dateOfUp).subtract(timeElement[timeElement.length - 2], 'days');
+            else if (timeElement[timeElement.length - 1].includes("hour"))
+                dateOfUp = moment(dateOfUp).subtract(timeElement[timeElement.length - 2], 'hours');
+            else if (timeElement[timeElement.length - 1].includes("minute"))
+                dateOfUp = moment(dateOfUp).subtract(timeElement[timeElement.length - 2], 'minutes');
+           
+            i++;
+        }
+       
         return dateOfUp;
     }
 
     $(document).ready(function () {
-        var uptime_date = ConvertUptimeToDate("2 years, 43 weeks, 18 hours, 34 minutes");
+        var uptime_date = ConvertUptimeToDate("21 hours, 52 minutes");
         document.getElementById("date").innerHTML = uptime_date;
+
+        //var sqlFormatDate = "2019-10-30T14:00:00";
+        //var momentSql = moment(sqlFormatDate)
+        //document.getElementById("date").innerHTML = momentSql;
+        //var subtractedDate = moment(momentSql).subtract(3, 'years');
+        //document.getElementById("subtracted").innerHTML = subtractedDate;
+        
     });
 </script>
 
